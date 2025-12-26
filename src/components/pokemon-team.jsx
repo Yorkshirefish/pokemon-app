@@ -7,30 +7,57 @@ function PokemonTeam() {
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(null);
-    const [pokemonId, setPokemonId] = useState(150)
-
-    const pokemon = 1025;
+    const [fullPokemonTeam, setFullPokemonTeam] = useState([]);
 
 
-    async function getPokemonData(id) {
+
+    // async function getPokemonData(id) {
+    //     setIsLoading(true);
+    //     setHasError(null);
+
+    //     try {
+    //     const returnedData = await fetchPokemon(id);
+    //     return returnedData;
+    //     } catch(e) {
+    //     setHasError("There has been an issue in the ")
+    //     } finally {
+    //     setIsLoading(false)
+    //     }
+    // }
+
+    async function buildTeam() {
+        //Removing any existing team
+        setFullPokemonTeam([])
         setIsLoading(true);
         setHasError(null);
 
         try {
-        const returnedData = await fetchPokemon(id);
-        setData(returnedData)
+
+            const pokemon_1 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            const pokemon_2 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            const pokemon_3 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            const pokemon_4 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            const pokemon_5 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            const pokemon_6 = await fetchPokemon(Math.ceil(Math.random() * 1025))
+            setFullPokemonTeam([pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6])
         } catch(e) {
-        setHasError("There has been an issue in the ")
+            setHasError("There has been an error building the team")
         } finally {
-        setIsLoading(false)
+            setIsLoading(false);
         }
     }
 
     
 
     useEffect(() => {
-        getPokemonData(pokemonId)
-    }, [pokemonId])
+        buildTeam()
+    }, []);
+
+    
+    useEffect(() => {
+        console.log(fullPokemonTeam);
+    }, [fullPokemonTeam]);
+      
 
 
     if(isLoading) {
@@ -45,11 +72,15 @@ function PokemonTeam() {
         )
     }
 
-    return (
-        <div>
-            {data && <SinglePokemon data={data}/>}
-        </div>
-    )
+    if(fullPokemonTeam.length > 0) {
+        return (
+            <div>
+                {fullPokemonTeam.map((pokemon, i) =>
+                    <SinglePokemon key={i + "-key"} name={pokemon.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types}/>
+                )}
+            </div>
+        )
+    }
 }
 
 export default PokemonTeam;

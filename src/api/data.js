@@ -8,7 +8,5 @@ export async function fetchPokemon(id) {
 
     const data = await response.json();
 
-    console.log(data)
-
     return data;
 }
