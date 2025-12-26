@@ -5,6 +5,7 @@ function SinglePokemon({data}) {
     const [isShiny, setIsShiny] = useState('false');
     
 
+    //This function decides if it will be shiny or not
     function determineShiny() {
         const randNum = Math.ceil(Math.random() * 100)
 
@@ -15,6 +16,7 @@ function SinglePokemon({data}) {
         }
     }       
 
+    //This runs the function on the first load
     useEffect(() => {
         determineShiny();
     },[])
