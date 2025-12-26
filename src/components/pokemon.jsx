@@ -2,29 +2,30 @@ import React, { useEffect, useState}  from "react";
 import "../css/pokemon.css"
 
 function SinglePokemon({data}) {
-    const [pokeSprite, setPokeSprite] = useState('')
+    const [isShiny, setIsShiny] = useState('false');
     
 
-    function isShiny() {
+    function determineShiny() {
         const randNum = Math.ceil(Math.random() * 100)
 
         if(randNum === 1) {
-            setPokeSprite(data.sprites.front_shiny)
+            setIsShiny(true)
         } else {
-            setPokeSprite(data.sprites.front_default)
+            setIsShiny(false)
         }
     }       
 
     useEffect(() => {
-        isShiny();
+        determineShiny();
     },[])
 
 
 
     return (
         <div>
-            <img src={pokeSprite} alt={data.name} />
+            <img src={isShiny ? data.sprites.front_shiny : data.sprites.front_default} alt={data.name} />
             <h1 className="pokemon-name">{data.name}</h1>
+            <h2>#{data.id}</h2>
             <p></p>
         </div>
     )

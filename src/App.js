@@ -6,7 +6,9 @@ function App() {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(null);
-  const [pokemonId, setPokemonId] = useState(1)
+  const [pokemonId, setPokemonId] = useState(150)
+
+  const pokemon = 1025;
 
 
   async function getPokemonData(id) {
