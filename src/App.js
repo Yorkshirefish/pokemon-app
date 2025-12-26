@@ -1,52 +1,11 @@
 import React, { useEffect, useState} from "react";
-import { fetchPokemon } from "./api/data";
-import SinglePokemon from "./components/pokemon";
+import PokemonTeam from "./components/pokemon-team";
 
 function App() {
-  const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(null);
-  const [pokemonId, setPokemonId] = useState(150)
-
-  const pokemon = 1025;
-
-
-  async function getPokemonData(id) {
-    setIsLoading(true);
-    setHasError(null);
-
-    try {
-      const returnedData = await fetchPokemon(id);
-      setData(returnedData)
-    } catch(e) {
-      setHasError("There has been an issue in the ")
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  
-
-  useEffect(() => {
-    getPokemonData(pokemonId)
-  }, [pokemonId])
-
-
-  if(isLoading) {
-    return (
-      <p>Loading...</p>
-    )
-  }
-
-  if(hasError) {
-    return (
-      <p>There has been an error getting Pokemon Data</p>
-    )
-  }
 
   return (
     <div>
-      {data && <SinglePokemon data={data} />}
+      <PokemonTeam />
     </div>
   );
 }
