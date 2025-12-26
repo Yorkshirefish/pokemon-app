@@ -1,8 +1,21 @@
-import React, { useEffect, useState}  from "react";
+import React, { useEffect, useInsertionEffect, useState}  from "react";
 import "../css/pokemon.css"
 
 function SinglePokemon({name, sprites, id, moves, types}) {
     const [isShiny, setIsShiny] = useState('false');
+    const [fourMoves, setFourMoves] = useState([]);
+
+    function setMoves() {
+        setFourMoves([]);
+
+        const pokemon_move_1 = Math.floor(Math.random() * moves.length);
+        const pokemon_move_2 = Math.floor(Math.random() * moves.length);
+        const pokemon_move_3 = Math.floor(Math.random() * moves.length);
+        const pokemon_move_4 = Math.floor(Math.random() * moves.length);
+
+        setFourMoves([moves[pokemon_move_1], moves[pokemon_move_2], moves[pokemon_move_3], moves[pokemon_move_4]]);
+
+    }
 
     //This function decides if it will be shiny or not
     function determineShiny() {
@@ -18,7 +31,12 @@ function SinglePokemon({name, sprites, id, moves, types}) {
     //This runs the function on the first load
     useEffect(() => {
         determineShiny();
+        setMoves();
     },[])
+
+    useEffect(() => {
+        console.log(fourMoves);
+    }, [fourMoves])
 
 
 
@@ -31,6 +49,11 @@ function SinglePokemon({name, sprites, id, moves, types}) {
             <div>
                 {types.map((type, i) =>
                     <p key={type.type.name + i}>{type.type.name}</p>
+                )}
+            </div>
+            <div>
+                {fourMoves.map((move, i) => 
+                    <p key={i} >{move.move.name}</p>
                 )}
             </div>
             <p></p>
