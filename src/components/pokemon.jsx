@@ -48,7 +48,7 @@ function SinglePokemon({name, sprites, id, moves, types}) {
             <h2>#{id}</h2>
             <div>
                 {types.map((type, i) =>
-                    <p key={type.type.name + i}>{type.type.name}</p>
+                    <p key={type.type.name + i} className={type.type.name + "-type"}>{type.type.name}</p>
                 )}
             </div>
             <div>
