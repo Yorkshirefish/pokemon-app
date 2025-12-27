@@ -41,7 +41,7 @@ function SinglePokemon({name, sprites, id, moves, types}) {
 
 
     return (
-        <div>
+        <div className="pokemon-cont">
             <img src={isShiny ? sprites.front_shiny : sprites.front_default} alt={name} />
             {isShiny && <p>Shiny</p>}
             <h1 className="pokemon-name">{name}</h1>

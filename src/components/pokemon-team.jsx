@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SinglePokemon from "./pokemon";
 import { fetchPokemon } from "../api/data";
+import "../css/pokemon-team.css";
 
 function PokemonTeam() {
 
@@ -52,22 +53,28 @@ function PokemonTeam() {
 
     if(isLoading) {
         return (
-        <p>Loading...</p>
+            <div className="loading-cont">
+                <p>Loading...</p>
+            </div>
         )
     }
 
     if(hasError) {
         return (
-        <p>There has been an error getting Pokemon Data</p>
+            <div className="error-cont">
+                <p>There has been an error getting Pokemon Data</p>
+            </div>
         )
     }
 
     if(fullPokemonTeam.length > 0) {
         return (
             <div>
-                {fullPokemonTeam.map((pokemon, i) =>
-                    <SinglePokemon key={i + "-key"} name={pokemon.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types}/>
-                )}
+                <div className="team-cont">
+                    {fullPokemonTeam.map((pokemon, i) =>
+                        <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types}/>
+                    )}
+                </div>
                 <button onClick={handleNewTeam}>New Team</button>
             </div>
         )

@@ -1,3 +1,10 @@
+.pokemon-cont {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .pokemon-name {
     text-transform: capitalize;
 }
