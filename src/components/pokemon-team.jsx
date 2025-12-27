@@ -9,22 +9,7 @@ function PokemonTeam() {
     const [hasError, setHasError] = useState(null);
     const [fullPokemonTeam, setFullPokemonTeam] = useState([]);
 
-
-
-    // async function getPokemonData(id) {
-    //     setIsLoading(true);
-    //     setHasError(null);
-
-    //     try {
-    //     const returnedData = await fetchPokemon(id);
-    //     return returnedData;
-    //     } catch(e) {
-    //     setHasError("There has been an issue in the ")
-    //     } finally {
-    //     setIsLoading(false)
-    //     }
-    // }
-
+    //This function loads 6 random pokemon and adds them to the fullPokemonTeam state
     async function buildTeam() {
         //Removing any existing team
         setFullPokemonTeam([])
@@ -47,6 +32,10 @@ function PokemonTeam() {
         }
     }
 
+    function handleNewTeam() {
+        buildTeam();
+    }
+
     
 
     useEffect(() => {
@@ -54,6 +43,7 @@ function PokemonTeam() {
     }, []);
 
     
+    //This is so I can see the data loading correctly
     useEffect(() => {
         console.log(fullPokemonTeam);
     }, [fullPokemonTeam]);
@@ -78,6 +68,7 @@ function PokemonTeam() {
                 {fullPokemonTeam.map((pokemon, i) =>
                     <SinglePokemon key={i + "-key"} name={pokemon.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types}/>
                 )}
+                <button onClick={handleNewTeam}>New Team</button>
             </div>
         )
     }
