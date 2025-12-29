@@ -88,13 +88,13 @@ function PokemonTeam() {
 
     if(fullPokemonTeam.length > 0) {
         return (
-            <div>
+            <div className="outer-team-cont">
                 <div className="team-cont">
                     {fullPokemonTeam.map((pokemon, i) =>
                         <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types} addNewPokemon={addNewPokemon} index={i}/>
                     )}
                 </div>
-                <button onClick={buildTeam}>New Team</button>
+                <button className="new-team-btn" onClick={buildTeam}>New Team</button>
             </div>
         )
     }
