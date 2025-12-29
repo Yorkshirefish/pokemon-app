@@ -1,10 +1,12 @@
 import React, { useEffect, useInsertionEffect, useState}  from "react";
 import "../css/pokemon.css"
 
-function SinglePokemon({name, sprites, id, moves, types}) {
+function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) {
     const [isShiny, setIsShiny] = useState('false');
     const [fourMoves, setFourMoves] = useState([]);
+    const [newPokemon, setNewPokemon] = useState('');
 
+    //
     function setMoves() {
         setFourMoves([]);
 
@@ -39,6 +41,17 @@ function SinglePokemon({name, sprites, id, moves, types}) {
     }, [fourMoves])
 
 
+    //Function for handling Input Change 
+    function handleNewPokemonChange({target}) {
+        setNewPokemon(target.value);
+    }
+
+    function handleNewPokemonSubmit(e) {
+        e.preventDefault();
+
+        addNewPokemon(newPokemon, index)
+    }
+
 
     return (
         <div className="pokemon-cont">
@@ -56,7 +69,10 @@ function SinglePokemon({name, sprites, id, moves, types}) {
                     <p key={i} >{move.move.name}</p>
                 )}
             </div>
-            <p></p>
+            <h3>Replace Pokemon?</h3>
+            <form onSubmit={handleNewPokemonSubmit}>
+                <input type="text" value={newPokemon} placeholder="Type ID or Name" onChange={handleNewPokemonChange}/>
+            </form>
         </div>
     )
 }

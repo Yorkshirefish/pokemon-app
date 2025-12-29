@@ -5,7 +5,6 @@ import "../css/pokemon-team.css";
 
 function PokemonTeam() {
 
-    const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(null);
     const [fullPokemonTeam, setFullPokemonTeam] = useState([]);
@@ -32,16 +31,36 @@ function PokemonTeam() {
             setIsLoading(false);
         }
     }
-
-    function handleNewTeam() {
-        buildTeam();
-    }
-
     
 
     useEffect(() => {
         buildTeam()
     }, []);
+
+    async function addNewPokemon(name, index) {
+        setIsLoading(true);
+        setHasError(null);
+        
+        try {
+            const newPokemon = await fetchPokemon(name);
+
+            const updatedTeam = fullPokemonTeam.map((pokemon, i) => {
+                if(i === index) {
+                    return newPokemon;
+                } else {
+                    return pokemon;
+                }
+            })
+
+            setFullPokemonTeam(updatedTeam);
+        } catch(e) {
+            setHasError("Cannot retrieve pokemon");
+        } finally {
+            setIsLoading(false);
+        }
+
+
+    }
 
     
     //This is so I can see the data loading correctly
@@ -72,10 +91,10 @@ function PokemonTeam() {
             <div>
                 <div className="team-cont">
                     {fullPokemonTeam.map((pokemon, i) =>
-                        <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types}/>
+                        <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types} addNewPokemon={addNewPokemon} index={i}/>
                     )}
                 </div>
-                <button onClick={handleNewTeam}>New Team</button>
+                <button onClick={buildTeam}>New Team</button>
             </div>
         )
     }
