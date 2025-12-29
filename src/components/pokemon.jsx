@@ -66,7 +66,7 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) 
             </div>
             <div className="moves-cont">
                 {fourMoves.map((move, i) => 
-                    <p key={i} >{move.move.name}</p>
+                    <p key={i} className="pokemon-move">{move.move.name}</p>
                 )}
             </div>
             <h3>Replace Pokemon?</h3>

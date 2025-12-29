@@ -1,11 +1,30 @@
 .pokemon-cont {
-    width: 33%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    padding: 20px 50px 50px 50px;
+    border-radius: 50px;
 }
 
 .pokemon-name {
+    text-transform: capitalize;
+}
+
+/*Moves Styling*/
+
+.moves-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap !important;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon-move {
+    width: 45%;
     text-transform: capitalize;
 }
 
