@@ -1,7 +1,7 @@
 import React, { useEffect, useInsertionEffect, useState}  from "react";
 import "../css/pokemon.css"
 
-function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) {
+function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index, newRandomPokemon}) {
     const [isShiny, setIsShiny] = useState('false');
     const [fourMoves, setFourMoves] = useState([]);
     const [newPokemon, setNewPokemon] = useState('');
@@ -53,6 +53,12 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) 
     }
 
 
+    //Function for new random Pokemon
+    function handleNewRandomPokemon() {
+        newRandomPokemon(index)
+    }
+
+
     return (
         <div className="pokemon-cont">
             <img src={isShiny ? sprites.front_shiny : sprites.front_default} alt={name} />
@@ -73,6 +79,7 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) 
             <form onSubmit={handleNewPokemonSubmit}>
                 <input type="text" value={newPokemon} placeholder="Type ID or Name" onChange={handleNewPokemonChange}/>
             </form>
+            <button onClick={handleNewRandomPokemon} >Random Pokemon</button>
         </div>
     )
 }

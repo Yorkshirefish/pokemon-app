@@ -37,6 +37,8 @@ function PokemonTeam() {
         buildTeam()
     }, []);
 
+
+    //Function for a manually added pokemon
     async function addNewPokemon(name, index) {
         setIsLoading(true);
         setHasError(null);
@@ -58,8 +60,30 @@ function PokemonTeam() {
         } finally {
             setIsLoading(false);
         }
+    }
 
+    //Function for single Random Pokemon
+    async function newRandomPokemon(index) {
+        setIsLoading(true);
+        setHasError(null);
 
+        try {
+            const newPokemon = await fetchPokemon(Math.ceil(Math.random() * 1025))
+
+            const updatedTeam = fullPokemonTeam.map((pokemon, i) => {
+                if(i === index) {
+                    return newPokemon;
+                } else {
+                    return pokemon;
+                }
+            })
+
+            setFullPokemonTeam(updatedTeam);
+        } catch(e) {
+            setHasError("Cannot retrieve pokemon");
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     
@@ -91,7 +115,7 @@ function PokemonTeam() {
             <div className="outer-team-cont">
                 <div className="team-cont">
                     {fullPokemonTeam.map((pokemon, i) =>
-                        <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types} addNewPokemon={addNewPokemon} index={i}/>
+                        <SinglePokemon key={i + "-key"} name={pokemon.species.name} sprites={pokemon.sprites} id={pokemon.id} moves={pokemon.moves} types={pokemon.types} addNewPokemon={addNewPokemon} index={i} newRandomPokemon={newRandomPokemon} />
                     )}
                 </div>
                 <button className="new-team-btn" onClick={buildTeam}>New Team</button>
