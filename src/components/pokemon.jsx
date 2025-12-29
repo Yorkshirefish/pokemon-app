@@ -6,7 +6,7 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index, n
     const [fourMoves, setFourMoves] = useState([]);
     const [newPokemon, setNewPokemon] = useState('');
 
-    //
+    //Function for selecting four random move from the pokemon
     function setMoves() {
         setFourMoves([]);
 
