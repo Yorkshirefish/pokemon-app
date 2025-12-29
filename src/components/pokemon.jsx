@@ -59,12 +59,12 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index}) 
             {isShiny && <p>Shiny</p>}
             <h1 className="pokemon-name">{name}</h1>
             <h2>#{id}</h2>
-            <div>
+            <div className="type-cont">
                 {types.map((type, i) =>
-                    <p key={type.type.name + i} className={type.type.name + "-type"}>{type.type.name}</p>
+                    <p key={type.type.name + i} className={type.type.name + "-type pokemon-type"}>{type.type.name}</p>
                 )}
             </div>
-            <div>
+            <div className="moves-cont">
                 {fourMoves.map((move, i) => 
                     <p key={i} >{move.move.name}</p>
                 )}
