@@ -106,6 +106,7 @@ function PokemonTeam() {
         return (
             <div className="error-cont">
                 <p>There has been an error getting Pokemon Data</p>
+                <button className="new-team-btn" onClick={buildTeam}>New Team</button>
             </div>
         )
     }

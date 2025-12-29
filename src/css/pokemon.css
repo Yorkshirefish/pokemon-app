@@ -12,6 +12,45 @@
     text-transform: capitalize;
 }
 
+.rand-pokemon {
+    font-size: 18px;
+    padding: 5px 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    transition: all 0.3s;
+}
+
+.pokemon-form {
+    margin: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.pokemon-form input {
+    width: 250px;
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 16px;
+}
+
+.pokemon-form button {
+    width: 100px;
+    height: 30px;
+}
+
+.rand-pokemon:hover {
+    border: 1px solid red;
+    background: red;
+    color: white;
+    cursor: pointer;
+}
+
 /*Moves Styling*/
 
 .moves-cont {
@@ -21,11 +60,17 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
 }
 
 .pokemon-move {
     width: 45%;
     text-transform: capitalize;
+    text-align: center;
+    background-color: darkolivegreen;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
 /*Type Styling*/

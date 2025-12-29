@@ -76,10 +76,11 @@ function SinglePokemon({name, sprites, id, moves, types, addNewPokemon, index, n
                 )}
             </div>
             <h3>Replace Pokemon?</h3>
-            <form onSubmit={handleNewPokemonSubmit}>
+            <form onSubmit={handleNewPokemonSubmit} className="pokemon-form">
                 <input type="text" value={newPokemon} placeholder="Type ID or Name" onChange={handleNewPokemonChange}/>
+                <button type="submit">Add</button>
             </form>
-            <button onClick={handleNewRandomPokemon} >Random Pokemon</button>
+            <button className="rand-pokemon" onClick={handleNewRandomPokemon} >Random Pokemon</button>
         </div>
     )
 }
